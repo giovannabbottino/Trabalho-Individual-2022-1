@@ -37,15 +37,32 @@ services:
     networks:
       - library-net
     build: ./library_front
-    command : npm start
+    command : npm run start
     volumes:
-      - .:/front
+      - front_build:/front/build
     ports:
       - "3000:3000"
     restart: always
     depends_on:
       - back
     stdin_open: true
+
+  nginx:
+    container_name: roberto
+    networks:
+      - library-net
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - front_build:/var/www/front
+    ports:
+      - 80:8080
+    depends_on:
+      - back
+      - front
+
+volumes:
+  front_build:
 
 networks:
   library-net:
