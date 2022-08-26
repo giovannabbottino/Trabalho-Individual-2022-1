@@ -19,11 +19,7 @@ services:
     networks:
       - library-net
     build: ./library_back
-    command: bash -c "python manage.py makemigrations && 
-                      python manage.py migrate &&
-                      python manage.py runserver"
-    volumes:
-      - .:/back
+    command: gunicorn src.wsgi --bind 0.0.0.0:8000
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
