@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./library_front
+        working-directory: ./library_back
 
     steps:
     - uses: actions/checkout@v1
