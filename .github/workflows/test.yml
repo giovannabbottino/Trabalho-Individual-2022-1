@@ -22,7 +22,7 @@ jobs:
       - name: Run test
         run: npm run test
 
-  front_test:
+  back_test:
     runs-on: ubuntu-latest
     defaults:
       run:
