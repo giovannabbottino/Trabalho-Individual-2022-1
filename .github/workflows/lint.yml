@@ -40,4 +40,4 @@ jobs:
             pip install -r requirements.txt
       - name: Run lint
         run: |
-            pylint .
+            pylint ./**/*.py
