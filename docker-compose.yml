@@ -19,7 +19,9 @@ services:
     networks:
       - library-net
     build: ./library_back
-    command: gunicorn src.wsgi --bind 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && 
+                      python manage.py migrate &&
+                      gunicorn src.wsgi --bind 0.0.0.0:8000"
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -37,7 +39,9 @@ services:
     networks:
       - library-net
     build: ./library_front
-    command : npm run start
+    command : bash -c "npm run build &&
+                      npm install -g serve &&
+                      serve -s build"
     volumes:
       - front_build:/front/build
     ports:
@@ -48,7 +52,7 @@ services:
     stdin_open: true
 
   nginx:
-    container_name: roberto
+    container_name: nginx
     networks:
       - library-net
     image: nginx:latest
