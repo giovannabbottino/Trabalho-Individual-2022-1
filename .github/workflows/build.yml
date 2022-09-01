@@ -41,7 +41,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ${{defaultContext}}:library_back
+        context: "{{defaultContext}}:library_back"
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1/library_back:latest
 
@@ -56,6 +56,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ${{defaultContext}}:library_front
+        context: "{{defaultContext}}:library_front"
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1/library_front:latest 
