@@ -39,8 +39,9 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: "{{defaultContext}}:library_back"
+        file: "/library_back/Dockerfile"
         push: true
-        tags: giovannabbottino-trabalho-individual-2022-1/library_back:latest
+        tags: giovannabbottino/trabalho-individual-2022-1:latest
 
   # docker-hub-front:
   #   needs: build
