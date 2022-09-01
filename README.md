@@ -13,6 +13,38 @@ Para executar a aplicação em sua máquina, basta seguir o passo-a-passo descri
 
 A aplicação é um simples sistema de gerenciamento de uma biblioteca. Porém, o foco do trabalho é na automação da build, testes, conteinerização e configuração dos pipelines de CI/CD.
 
+## Como rodar
+
+Basta rodar o comando:
+
+```
+docker-compose up
+```
+
+## FrontEnd
+
+### Testes
+```
+docker-compose run front bash -c "npm run test"
+```
+
+### Lint
+```
+docker-compose run front bash -c "npm run lint"
+```
+
+## Backend
+
+### Testes
+```
+docker-compose run back bash -c "python manage.py test"
+```
+
+### Lint
+```
+docker-compose run back bash -c "pylint ./**/*.py"
+```
+
 ## Etapas de trabalho
 
 O trabalho deve ser elaborado através de etapas. Cada uma das etapas deve ser realizada em um commit separado com o resultado funcional desta etapa.
