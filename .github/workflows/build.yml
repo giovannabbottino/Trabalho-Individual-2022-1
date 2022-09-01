@@ -43,16 +43,19 @@ jobs:
       with:
         context: "{{defaultContext}}"
         push: true
-        tags: giovannabbottino/trabalho-individual-2022-1:latest
+        tags: giovannabbottino/trabalho-individual-2022-1-back:latest
 
-  # docker-hub-front:
-  #   needs: build
+  docker-hub-front:
+    needs: build
+    defaults:
+      run:
+        working-directory: ./library_front
 
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Build and push
-  #     uses: docker/build-push-action@v2
-  #     with:
-  #       context:  "{{defaultContext}}:library_back"
-  #       push: true
-  #       tags: giovannabbottino-trabalho-individual-2022-1/library_front:latest 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: "{{defaultContext}}"
+        push: true
+        tags: giovannabbottino/trabalho-individual-2022-1-front:latest
