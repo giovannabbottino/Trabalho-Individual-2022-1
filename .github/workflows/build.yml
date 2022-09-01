@@ -43,7 +43,7 @@ jobs:
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1/library_back:latest
 
-  docker-hub-back:
+  docker-hub-front:
     needs: build
 
     runs-on: ubuntu-latest
