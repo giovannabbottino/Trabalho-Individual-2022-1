@@ -32,14 +32,16 @@ jobs:
 
   docker-hub-back:
     needs: build
+    defaults:
+      run:
+        working-directory: ./library_back
 
     runs-on: ubuntu-latest
     steps:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: "{{defaultContext}}:library_back"
-        file: "/library_back/Dockerfile"
+        context: "{{defaultContext}}"
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1:latest
 
