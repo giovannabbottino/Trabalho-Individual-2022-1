@@ -1,0 +1,43 @@
+name: Lint
+
+on: [push]
+
+jobs:
+  front_eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./library_front
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+    
+    - name: Install Dependencies
+      run: npm install
+
+    - name: ESLint check
+      run: npm run lint
+
+  back_lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./library_back
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+           python-version: 3.8
+      - name: Install requirements
+        run: |
+            pip install -r requirements.txt
+      - name: Run lint
+        run: |
+            pylint ./**/*.py

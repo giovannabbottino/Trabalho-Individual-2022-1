@@ -1,0 +1,61 @@
+name: Build
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run docker-compose up
+      run: docker-compose up -d
+
+    - name: Run docker-compose down
+      run: docker-compose down
+    
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+  docker-hub-back:
+    needs: build
+    defaults:
+      run:
+        working-directory: ./library_back
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: "{{defaultContext}}"
+        push: true
+        tags: giovannabbottino/trabalho-individual-2022-1-back:latest
+
+  docker-hub-front:
+    needs: build
+    defaults:
+      run:
+        working-directory: ./library_front
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: "{{defaultContext}}"
+        push: true
+        tags: giovannabbottino/trabalho-individual-2022-1-front:latest
