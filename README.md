@@ -1,4 +1,6 @@
 # Trabalho-Individual-2022-1
+[![Build](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/build.yml/badge.svg)](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/build.yml) [![Lint](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/lint.yml/badge.svg)](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/lint.yml) [![Test](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/test.yml/badge.svg)](https://github.com/giovannabbottino/Trabalho-Individual-2022-1/actions/workflows/test.yml)
+
 Trabalho individual de GCES de 2022/1
 
 Os conhecimentos de *Gestão de Configuração de Software* são fundamentais no ciclo de vida de um produto de software. As técnicas para a gestão vão desde o controle de versão, automação de build e de configuração de ambiente, testes automatizados, isolamento do ambiente até o deploy do sistema. Todo este ciclo nos dias de hoje são integrados em um pipeline de DevOps com as etapas de Integração Contínua (CI) e Deploy Contínuo (CD) implementadas e automatizada.
@@ -18,10 +20,11 @@ A aplicação é um simples sistema de gerenciamento de uma biblioteca. Porém, 
 Basta rodar o comando:
 
 ```
-docker-compose up
+docker-compose up --build
 ```
 
 ## FrontEnd
+
 
 ### Testes
 ```
@@ -41,6 +44,7 @@ docker-compose run back bash -c "python manage.py test"
 ```
 
 ### Lint
+
 ```
 docker-compose run back bash -c "pylint ./**/*.py"
 ```
