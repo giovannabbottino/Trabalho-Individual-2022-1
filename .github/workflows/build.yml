@@ -30,32 +30,20 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-  docker-hub-back:
-    needs: build
-    defaults:
-      run:
-        working-directory: ./library_back
-
-    runs-on: ubuntu-latest
-    steps:
-    - name: Build and push
+    - name: Build and push Back
+      id: docker_build_back
       uses: docker/build-push-action@v2
       with:
-        context: "{{defaultContext}}"
+        context: ./library_back
+        file: ./library_back/Dockerfile
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1-back:latest
 
-  docker-hub-front:
-    needs: build
-    defaults:
-      run:
-        working-directory: ./library_front
-
-    runs-on: ubuntu-latest
-    steps:
-    - name: Build and push
+    - name: Build and push Front
+      id: docker_build_front
       uses: docker/build-push-action@v2
       with:
-        context: "{{defaultContext}}"
+        context: ./library_front
+        file: ./library_front/Dockerfile
         push: true
         tags: giovannabbottino/trabalho-individual-2022-1-front:latest
